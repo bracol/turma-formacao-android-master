@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Task Manager</string>
+    <string name="app_nameImc">Calculador de IMC</string>
+
+    <string name="hello_world">Olá mundo!</string>
+    <string name="action_settings">Configuração</string>
+
+    <string name="lbl_login">Usuário</string>
+    <string name="lbl_password">Senha</string>
+    <string name="lbl_enter">Entrar</string>
+    <string name="msg_welcome">Seja bem vindo %s !</string>
+
+    <string name="lbl_height">Altura</string>
+    <string name="lbl_weight">Peso</string>
+    <string name="lbl_calcular">Calcular</string>
+    <string name="lbl_description">Descrição</string>
+    <string name="lbl_save">Salvar</string>
+    <string name="lbl_add">Adicionar</string>
+    <string name="lbl_name">Nome</string>
+    <string name="lbl_delete"> Deletar </string>
+    <string name="lbl_edit"> Alterar </string>
+    <string name="lbl_confirm"> Confirmação </string>
+    <string name="lbl_yes"> Sim </string>
+    <string name="lbl_no"> Não </string>
+
+    <string name="msg_imc">Seu IMC: %f</string>
+    <string name="msg_required">Campo obrigatorio</string>
+    <string name="msg_save_sucess">Salvo com Sucesso</string>
+    <string name="msg_delete_succesful"> Deletado com sucesso!</string>
+    <string name="msg_confirm_delete"> Deseja excluir o registro? </string>
+
+
+
+    />
+
+</resources>

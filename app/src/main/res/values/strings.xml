@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Task Manager</string>
+    <string name="app_nameImc">IMC Calculator</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="lbl_login"></string>
+    <string name="lbl_password"></string>
+    <string name="lbl_enter">Login</string>
+    <string name="msg_welcome">Welcome %s</string>
+
+    <string name="lbl_height"></string>
+    <string name="lbl_weight"></string>
+    <string name="lbl_calcular">Calculate</string>
+    <string name="msg_imc">Your IMC: %f</string>
+    <string name="lbl_description">Description</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_add">Add</string>
+    <string name="lbl_name">name</string>
+    <string name="msg_required">Empty field</string>
+    <string name="msg_save_sucess">Save sucessfull</string>
+    <string name="lbl_delete"> Delete </string>
+    <string name="lbl_edit"> Edit </string>
+    <string name="msg_delete_succesful"> Delete Succesful </string>
+    <string name="lbl_confirm">  Confirm</string>
+    <string name="msg_confirm_delete"> Want to delete this record? </string>
+    <string name="lbl_yes"> Yes </string>
+    <string name="lbl_no"> No </string>
+</resources>
