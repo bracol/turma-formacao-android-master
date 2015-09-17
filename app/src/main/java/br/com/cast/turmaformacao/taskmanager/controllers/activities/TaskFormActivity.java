@@ -57,7 +57,7 @@ public class TaskFormActivity extends AppCompatActivity {
                 String requiredMessage = TaskFormActivity.this.getString(R.string.msg_required);
                 if (!FormHelper.validateRequired(requiredMessage, editTextName)) {
                     binTask();
-                    //contexto de aplicaÁ„o, n„o est· manipulando interface e sim arquivo
+                    //contexto de aplicao, n√£o est√£o manipulando interface e sim arquivo
                     TaskBusinessServices.save(task);
                     Toast.makeText(TaskFormActivity.this, R.string.msg_save_sucess, Toast.LENGTH_LONG).show();
                     TaskFormActivity.this.finish();

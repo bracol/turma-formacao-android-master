@@ -5,7 +5,7 @@ import android.app.Application;
 import br.com.cast.turmaformacao.taskmanager.util.ApplicationUtil;
 
 public class TaskManagerApplication extends Application {
-    //application manipula ciclo de vida da aplicação
+    //application manipula ciclo de vida da aplicaÃ§Ã£o
 
     public void onCreate(){
         super.onCreate();

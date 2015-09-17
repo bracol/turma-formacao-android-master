@@ -13,17 +13,17 @@ import br.com.cast.turmaformacao.taskmanager.model.persistence.TaskRepository;
  */
 public final class TaskBusinessServices {
 
-    private TaskBusinessServices(){
+    private TaskBusinessServices() {
         super();
+    }
+
+    public static List<Task> findAll() {
+        return TaskRepository.getAll();
+
     }
 
     public static void save(Task task) {
         TaskRepository.save(task);
-    }
-
-    public static List<Task> findAll(){
-        return TaskRepository.getAll();
-
     }
 
 

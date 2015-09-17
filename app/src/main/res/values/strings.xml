@@ -17,7 +17,7 @@
     <string name="lbl_description">Description</string>
     <string name="lbl_save">Save</string>
     <string name="lbl_add">Add</string>
-    <string name="lbl_name">name</string>
+    <string name="lbl_name">Name</string>
     <string name="msg_required">Empty field</string>
     <string name="msg_save_sucess">Save sucessfull</string>
     <string name="lbl_delete"> Delete </string>
@@ -27,4 +27,5 @@
     <string name="msg_confirm_delete"> Want to delete this record? </string>
     <string name="lbl_yes"> Yes </string>
     <string name="lbl_no"> No </string>
+    <string name="lbl_OK" />
 </resources>

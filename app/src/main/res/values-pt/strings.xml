@@ -29,7 +29,7 @@
     <string name="msg_save_sucess">Salvo com Sucesso</string>
     <string name="msg_delete_succesful"> Deletado com sucesso!</string>
     <string name="msg_confirm_delete"> Deseja excluir o registro? </string>
-
+    <string name="lbl_OK" />
 
 
     />
