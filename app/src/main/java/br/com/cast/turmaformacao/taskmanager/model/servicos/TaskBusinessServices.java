@@ -1,12 +1,9 @@
 package br.com.cast.turmaformacao.taskmanager.model.servicos;
 
-import android.content.Context;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
-import br.com.cast.turmaformacao.taskmanager.model.persistence.TaskRepository;
+import br.com.cast.turmaformacao.taskmanager.model.persistence.Task.TaskRepository;
 
 /**
  * Created by Administrador on 15/09/2015.

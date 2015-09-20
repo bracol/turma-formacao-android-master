@@ -4,18 +4,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.cast.turmaformacao.taskmanager.R;
+import br.com.cast.turmaformacao.taskmanager.controllers.adapters.ColorListAdapter;
 import br.com.cast.turmaformacao.taskmanager.controllers.adapters.LabelListAdapter;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Color;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
-import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
-import br.com.cast.turmaformacao.taskmanager.model.persistence.LabelRepository;
 import br.com.cast.turmaformacao.taskmanager.model.servicos.LabelBusinessServices;
 
 /**
@@ -24,6 +24,7 @@ import br.com.cast.turmaformacao.taskmanager.model.servicos.LabelBusinessService
 public class LabelFormActivity extends AppCompatActivity {
     private Spinner spinnerColor;
     private Label label;
+    private ListView listColorView;
     private EditText editTextName;
     private EditText editTextDescription;
 
@@ -36,8 +37,14 @@ public class LabelFormActivity extends AppCompatActivity {
         bindEditTextName();
         bindEditTextDescription();
         bindSpinnerColor();
+        bindListColorView();
 
     }
+
+    private void bindListColorView() {
+        listColorView = (ListView) findViewById(R.id.listViewTaskList);
+    }
+
     //inicia a label, caso não exista cria uma nova
     private void initLabel() {
         this.label = this.label == null ? new Label() : this.label;
@@ -56,8 +63,19 @@ public class LabelFormActivity extends AppCompatActivity {
     private void bindSpinnerColor() {
         //primeiro passado criar o adapter
         spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
-        ArrayAdapter<Color> adapter = new ArrayAdapter<>(LabelFormActivity.this,android.R.layout.simple_list_item_1,Color.values());
-        spinnerColor.setAdapter(adapter);
+        Color [] list = Color.values();
+        ColorListAdapter colorAdapter = new ColorListAdapter(LabelFormActivity.this, list);
+        spinnerColor.setAdapter(colorAdapter);
+
+    }
+
+    private void updateLabelList() {
+        List<Label> values = LabelBusinessServices.findAll();
+        spinnerColor.setAdapter(new LabelListAdapter(this, values));
+
+        LabelListAdapter adapter = (LabelListAdapter) spinnerColor.getAdapter();
+
+        adapter.notifyDataSetInvalidated();
     }
 
     //método na classe pai que sera sobrescrito
@@ -83,7 +101,6 @@ public class LabelFormActivity extends AppCompatActivity {
     //método que vai ser chamador caso o item do menu seja o OK
     private void onMenuOK() {
         binLabel();
-        label.setColor(Color.BLUE);
         LabelBusinessServices.save(label);
         //Toast serve para exibir uma mensagem na tela do android como uma popup
         //necessita de um contexto(activity), a mensagem e o tipo da duração que será exibido(long, short) e um .show() para de fato aparecer na tela
@@ -95,7 +112,8 @@ public class LabelFormActivity extends AppCompatActivity {
         //seta a label com o edittext.getText que irá pegar o texto do componente, porém é necessário dar um toString()
         label.setName(editTextName.getText().toString());
         label.setDescription(editTextDescription.getText().toString());
-        //label.setColor(Color.getInstance(spinnerColor.getSelectedItem().toString()));
-        //label.setColor(Color.getInstance(((Color) spinnerColor.getSelectedItem()).getHex()));
+        Color cor = (Color) spinnerColor.getAdapter().getItem(spinnerColor.getSelectedItemPosition());
+        label.setColor(cor);
+
     }
 }

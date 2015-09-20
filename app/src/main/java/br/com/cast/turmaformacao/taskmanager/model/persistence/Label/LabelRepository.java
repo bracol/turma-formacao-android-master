@@ -1,4 +1,4 @@
-package br.com.cast.turmaformacao.taskmanager.model.persistence;
+package br.com.cast.turmaformacao.taskmanager.model.persistence.Label;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
+import br.com.cast.turmaformacao.taskmanager.model.persistence.DatabaseHelper;
 
 public class LabelRepository {
 

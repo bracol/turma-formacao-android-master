@@ -1,4 +1,4 @@
-package br.com.cast.turmaformacao.taskmanager.model.persistence;
+package br.com.cast.turmaformacao.taskmanager.model.persistence.Label;
 
 import android.content.ContentValues;
 import android.database.Cursor;

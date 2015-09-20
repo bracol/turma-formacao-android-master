@@ -3,7 +3,7 @@ package br.com.cast.turmaformacao.taskmanager.model.servicos;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
-import br.com.cast.turmaformacao.taskmanager.model.persistence.LabelRepository;
+import br.com.cast.turmaformacao.taskmanager.model.persistence.Label.LabelRepository;
 
 
 /**
