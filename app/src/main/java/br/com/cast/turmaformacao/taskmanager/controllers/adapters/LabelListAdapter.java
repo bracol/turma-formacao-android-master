@@ -24,7 +24,7 @@ public class LabelListAdapter extends BaseAdapter {
     private Activity context;
     private List<Label> labels;
 
-    public LabelListAdapter(Activity activity, List<Label> labels){
+    public LabelListAdapter(Activity activity, List<Label> labels) {
         super();
         this.context = activity;
         this.labels = labels;
@@ -51,10 +51,20 @@ public class LabelListAdapter extends BaseAdapter {
         //segundo passo criar o layout da lista
         //terceiro passo criar os itens da lista aqui
 
-        View colorListItem = context.getLayoutInflater().inflate(R.layout.list_item_label, parent, false);
-        //TextView textViewColor = (TextView) colorListItem.findViewById(R.id.te);
+        View viewListLabel = context.getLayoutInflater().inflate(R.layout.list_item_label, parent, false);
+
+        View viewColor = viewListLabel.findViewById(R.id.viewColorList);
+        viewColor.setBackgroundColor(android.graphics.Color.parseColor(label.getColor().getHex()));
+
+        TextView textViewName = (TextView) viewListLabel.findViewById(R.id.textViewNameList);
+        textViewName.setText(label.getName());
 
 
-        return colorListItem;
+        return viewListLabel;
+    }
+
+    public void setItens(List<Label> itens) {
+        labels.clear();
+        labels.addAll(itens);
     }
 }

@@ -6,25 +6,27 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.List;
 
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
 import br.com.cast.turmaformacao.taskmanager.model.persistence.DatabaseHelper;
+import br.com.cast.turmaformacao.taskmanager.model.persistence.Label.LabelContract;
 
 public class TaskRepository {
 
-    private TaskRepository(){
+    private TaskRepository() {
         super();
     }
 
-    public static void save(Task task){
+    public static void save(Task task) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         ContentValues values = TaskContract.getContentValues(task);
-        if(task.getId() == null) {
+        if (task.getId() == null) {
             db.insert(TaskContract.TABLE, null, values);
         } else {
             String where = TaskContract.ID + " = ? ";
-            String [] params =  {task.getId().toString()};
+            String[] params = {task.getId().toString()};
             db.update(TaskContract.TABLE, values, where, params);
         }
 
@@ -32,19 +34,19 @@ public class TaskRepository {
         databaseHelper.close();
     }
 
-    public static void delete(long id){
+    public static void delete(long id) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         String where = TaskContract.ID + " = ? ";
-        String [] params =  {String.valueOf(id)};
+        String[] params = {String.valueOf(id)};
         db.delete(TaskContract.TABLE, where, params);
 
         db.close();
         databaseHelper.close();
     }
 
-    public static List<Task> getAll(){
+    public static List<Task> getAll() {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 

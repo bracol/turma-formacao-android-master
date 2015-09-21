@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import br.com.cast.turmaformacao.taskmanager.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginFormActivity extends AppCompatActivity {
 
     private EditText editTextLogin;
     private EditText editTextPassword;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent redirectToTaskList = new Intent(LoginActivity.this, TaskListActivity.class);
+                Intent redirectToTaskList = new Intent(LoginFormActivity.this, TaskListActivity.class);
                 startActivity(redirectToTaskList);
             }
         });

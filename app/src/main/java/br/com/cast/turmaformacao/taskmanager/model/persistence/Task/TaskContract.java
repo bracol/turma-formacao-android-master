@@ -6,6 +6,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
 
 /**
@@ -17,8 +18,9 @@ public final class TaskContract {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
+    public static final String LABEL_ID = "label_id";
 
-    public static final String[] COLUMNS = {ID, NAME, DESCRIPTION};
+    public static final String[] COLUMNS = {ID, NAME, DESCRIPTION, LABEL_ID};
 
     private TaskContract() {
         super();
@@ -31,7 +33,8 @@ public final class TaskContract {
         create.append("( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
         create.append(NAME + " TEXT NOT NULL, ");
-        create.append(DESCRIPTION + " TEXT ");
+        create.append(DESCRIPTION + " TEXT, ");
+        create.append(LABEL_ID + " INTEGER NOT NULL ");
         create.append(" ); ");
 
         return create.toString();
@@ -42,6 +45,7 @@ public final class TaskContract {
         values.put(TaskContract.ID, task.getId());
         values.put(TaskContract.NAME, task.getName());
         values.put(TaskContract.DESCRIPTION, task.getDescription());
+        values.put(TaskContract.LABEL_ID, task.getLabel().getId());
 
         return values;
     }
@@ -53,10 +57,16 @@ public final class TaskContract {
             task.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.ID)));
             task.setName(cursor.getString(cursor.getColumnIndex(TaskContract.NAME)));
             task.setDescription(cursor.getString(cursor.getColumnIndex(TaskContract.DESCRIPTION)));
+
+            Label label = new Label();
+            label.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID)));
+
+            task.setLabel(label);
             return task;
         }
         return null;
     }
+
 
     public static List<Task> getTasks(Cursor cursor) {
         ArrayList<Task> tasks = new ArrayList<>();

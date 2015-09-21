@@ -15,6 +15,7 @@ public class Task implements Parcelable{
     private Long id;
     private String name;
     private String description;
+    private Label label;
 
     public Long getId() {
         return id;
@@ -27,6 +28,14 @@ public class Task implements Parcelable{
     public Task(Parcel imp){
         super();
         readFromParcel(imp);
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
     }
 
     public void setId(long id) {
@@ -77,7 +86,7 @@ public class Task implements Parcelable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                '}';
+                ", label = " + label.getId() ;
     }
 
     @Override

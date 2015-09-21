@@ -7,14 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.R;
+import br.com.cast.turmaformacao.taskmanager.controllers.adapters.LabelListAdapter;
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
+import br.com.cast.turmaformacao.taskmanager.model.servicos.LabelBusinessServices;
 import br.com.cast.turmaformacao.taskmanager.model.servicos.TaskBusinessServices;
 import br.com.cast.turmaformacao.taskmanager.util.FormHelper;
 
@@ -25,8 +32,9 @@ public class TaskFormActivity extends AppCompatActivity {
 
     public static final String PARAM_TASK = "TASK";
     private EditText editTextName;
+    private Button btnLabel;
     private EditText editTextDescription;
-    private Button buttonSave;
+    private Spinner spinnerLabel;
     private Task task;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +45,48 @@ public class TaskFormActivity extends AppCompatActivity {
 
         bindEditTextName();
         bindEditTextDescription();
-        bindEditButtonSalvar();
+        bindBtnLabel();
+        bindSpinnerLabel();
     }
+
+    private void bindBtnLabel() {
+        btnLabel = (Button) findViewById(R.id.btn_go_label);
+        btnLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToLabelForm = new Intent(TaskFormActivity.this, LabelFormActivity.class);
+                startActivity(goToLabelForm);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        updateLabelList();
+        super.onResume();
+    }
+
+    private void bindSpinnerLabel() {
+        List<Label> labels = LabelBusinessServices.findAll();
+        spinnerLabel = (Spinner) findViewById(R.id.spinnerLabel);
+        spinnerLabel.setAdapter(new LabelListAdapter(TaskFormActivity.this, labels));
+    }
+
+    public void updateLabelList() {
+        List<Label> labels = LabelBusinessServices.findAll();
+        LabelListAdapter adapter = (LabelListAdapter) spinnerLabel.getAdapter();
+        adapter.setItens(labels);
+        adapter.notifyDataSetChanged();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //menuinflater serve pra pegar o layout do meno correspondente e adicionar todos os itens
+        getMenuInflater().inflate(R.menu.menu_task_form, menu);
+        //criar o menu
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     public void initTask() {
         Bundle extras = getIntent().getExtras();
@@ -48,27 +96,34 @@ public class TaskFormActivity extends AppCompatActivity {
         this.task = this.task == null ? new Task() : this.task;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_task_OK:
+                onMenuOk();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-    private void bindEditButtonSalvar() {
-        buttonSave = (Button) findViewById(R.id.button_salvar);
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String requiredMessage = TaskFormActivity.this.getString(R.string.msg_required);
-                if (!FormHelper.validateRequired(requiredMessage, editTextName)) {
-                    binTask();
-                    //contexto de aplicao, não estão manipulando interface e sim arquivo
-                    TaskBusinessServices.save(task);
-                    Toast.makeText(TaskFormActivity.this, R.string.msg_save_sucess, Toast.LENGTH_LONG).show();
-                    TaskFormActivity.this.finish();
-                }
-            }
+    private void onMenuOk() {
+        String requiredMessage = TaskFormActivity.this.getString(R.string.msg_required);
+        if (!FormHelper.validateRequired(requiredMessage, editTextName)) {
+            binTask();
+            //Toast.makeText(TaskFormActivity.this, task.getLabel().getId().toString(), Toast.LENGTH_LONG).show();
+            //contexto de aplicao, não estão manipulando interface e sim arquivo
+            TaskBusinessServices.save(task);
+            //Toast.makeText(TaskFormActivity.this, R.string.msg_save_sucess, Toast.LENGTH_LONG).show();
 
-            private void binTask() {
-                task.setName(editTextName.getText().toString());
-                task.setDescription(editTextDescription.getText().toString());
-            }
-        });
+            TaskFormActivity.this.finish();
+        }
+    }
+
+    private void binTask() {
+        task.setName(editTextName.getText().toString());
+        task.setDescription(editTextDescription.getText().toString());
+        task.setLabel((Label) spinnerLabel.getSelectedItem());
+        Toast.makeText(TaskFormActivity.this, task.toString(), Toast.LENGTH_LONG).show();
     }
 
     private void bindEditTextDescription() {

@@ -28,4 +28,5 @@
     <string name="lbl_yes"> Yes </string>
     <string name="lbl_no"> No </string>
     <string name="lbl_OK" />
+    <string name="lbl_btnSaveLabel">Save Label</string>
 </resources>

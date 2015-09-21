@@ -14,8 +14,12 @@
         </activity>
 
         <activity
-            android:name=".controllers.activities.LoginActivity"
+            android:name=".controllers.activities.LoginFormActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -31,10 +35,7 @@
         <activity
             android:name=".controllers.activities.LabelFormActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -45,14 +46,11 @@
         <activity
             android:name=".controllers.activities.CalculatorFormActivity"
             android:label="@string/app_name">
-
         </activity>
 
         <activity
             android:name=".controllers.activities.CalculatorListActivity"
             android:label="@string/app_name">
-
-
         </activity>
 
     </application>

@@ -23,13 +23,15 @@
     <string name="lbl_confirm"> Confirmação </string>
     <string name="lbl_yes"> Sim </string>
     <string name="lbl_no"> Não </string>
+    <string name="lbl_OK" />
+    <string name="lbl_btnSaveLabel">Salvar Label</string>
 
     <string name="msg_imc">Seu IMC: %f</string>
     <string name="msg_required">Campo obrigatorio</string>
     <string name="msg_save_sucess">Salvo com Sucesso</string>
     <string name="msg_delete_succesful"> Deletado com sucesso!</string>
     <string name="msg_confirm_delete"> Deseja excluir o registro? </string>
-    <string name="lbl_OK" />
+
 
 
     />

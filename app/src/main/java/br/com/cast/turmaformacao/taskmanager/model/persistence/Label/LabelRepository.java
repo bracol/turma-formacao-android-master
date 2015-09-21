@@ -11,20 +11,20 @@ import br.com.cast.turmaformacao.taskmanager.model.persistence.DatabaseHelper;
 
 public class LabelRepository {
 
-    private LabelRepository(){
+    private LabelRepository() {
         super();
     }
 
-    public static void save(Label label){
+    public static void save(Label label) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         ContentValues values = LabelContract.getContentValues(label);
-        if(label.getId() == null) {
+        if (label.getId() == null) {
             db.insert(LabelContract.TABLE, null, values);
         } else {
             String where = LabelContract.ID + " = ? ";
-            String [] params =  {label.getId().toString()};
+            String[] params = {label.getId().toString()};
             db.update(LabelContract.TABLE, values, where, params);
         }
 
@@ -32,19 +32,20 @@ public class LabelRepository {
         databaseHelper.close();
     }
 
-    public static void delete(long id){
+    public static void delete(long id) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         String where = LabelContract.ID + " = ? ";
-        String [] params =  {String.valueOf(id)};
+        String[] params = {String.valueOf(id)};
         db.delete(LabelContract.TABLE, where, params);
 
         db.close();
         databaseHelper.close();
     }
 
-    public static List<Label> getAll(){
+
+    public static List<Label> getAll() {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
@@ -59,5 +60,21 @@ public class LabelRepository {
         return values;
     }
 
+
+    public static Label getById(Long id) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = LabelContract.ID + " = ?";
+        String[] params = {String.valueOf(id)};
+
+        Cursor cursor = db.query(LabelContract.TABLE, LabelContract.COLUMNS, where, params, null, null, null, null);
+        Label label = LabelContract.getLabel(cursor);
+
+        db.close();
+        databaseHelper.close();
+
+        return label;
+    }
 
 }
