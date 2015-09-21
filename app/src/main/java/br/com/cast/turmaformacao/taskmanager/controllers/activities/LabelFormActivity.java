@@ -1,9 +1,12 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -22,9 +25,9 @@ import br.com.cast.turmaformacao.taskmanager.model.servicos.LabelBusinessService
  * Created by Administrador on 17/09/2015.
  */
 public class LabelFormActivity extends AppCompatActivity {
-    private Spinner spinnerColor;
+    //private Spinner spinnerColor;
     private Label label;
-    private ListView listColorView;
+    private View viewColor;
     private EditText editTextName;
     private EditText editTextDescription;
 
@@ -36,14 +39,41 @@ public class LabelFormActivity extends AppCompatActivity {
         initLabel();
         bindEditTextName();
         bindEditTextDescription();
-        bindSpinnerColor();
-        bindListColorView();
-
+        bindViewColor();
     }
 
-    private void bindListColorView() {
-        listColorView = (ListView) findViewById(R.id.listViewTaskList);
+    private void bindViewColor() {
+        viewColor = findViewById(R.id.spinnerColor);
+        viewColor.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LabelFormActivity.this);
+                final ColorListAdapter adapter = new ColorListAdapter(LabelFormActivity.this);
+                dialogBuilder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        updateColor((Color) adapter.getItem(which));
+                    }
+                }).setTitle("Selecione a cor")
+                        .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).show();
+            }
+        });
     }
+
+    private void updateColor(Color item) {
+
+        label.setColor(item);
+        int cor = android.graphics.Color.parseColor(item.getHex());
+
+        viewColor.setBackgroundColor(cor);
+    }
+
 
     //inicia a label, caso não exista cria uma nova
     private void initLabel() {
@@ -60,26 +90,17 @@ public class LabelFormActivity extends AppCompatActivity {
     }
 
     //monta o spinnerColor
-    private void bindSpinnerColor() {
+    /*private void bindSpinnerColor() {
         //primeiro passado criar o adapter
         spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
-        Color [] list = Color.values();
-        ColorListAdapter colorAdapter = new ColorListAdapter(LabelFormActivity.this, list);
+        Color [] values = Color.values();
+        ColorListAdapter colorAdapter = new ColorListAdapter(LabelFormActivity.this, values);
         spinnerColor.setAdapter(colorAdapter);
-    }
+    }*/
 
-    private Color getSpinnerColor(){
-        return (Color) spinnerColor.getItemAtPosition(spinnerColor.getSelectedItemPosition());
-    }
-
-    private void updateLabelList() {
-        List<Label> values = LabelBusinessServices.findAll();
-        spinnerColor.setAdapter(new LabelListAdapter(this, values));
-
-        LabelListAdapter adapter = (LabelListAdapter) spinnerColor.getAdapter();
-
-        adapter.notifyDataSetInvalidated();
-    }
+    //private Color getSpinnerColor(){
+    //return (Color) spinnerColor.getSelectedItem();
+    //}
 
     //método na classe pai que sera sobrescrito
     @Override
@@ -116,7 +137,7 @@ public class LabelFormActivity extends AppCompatActivity {
         label.setName(editTextName.getText().toString());
         label.setDescription(editTextDescription.getText().toString());
         //Color cor = (Color) spinnerColor.getAdapter().getItem(spinnerColor.getSelectedItemPosition());
-        label.setColor(getSpinnerColor());
+        //label.setColor(getSpinnerColor());
 
     }
 }
