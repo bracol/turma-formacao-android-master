@@ -48,7 +48,7 @@ public class LoginContract {
         return values;
     }
 
-    public static Login getTask(Cursor cursor) {
+    public static Login getLogin(Cursor cursor) {
         if (!cursor.isBeforeFirst() || cursor.moveToNext()) {
             Login login = new Login();
             /* get column index pega o indice de acordo com o nome da coluna passado */
@@ -62,11 +62,11 @@ public class LoginContract {
     }
 
 
-    public static List<Login> getTasks(Cursor cursor) {
+    public static List<Login> getLogins(Cursor cursor) {
         ArrayList<Login> logins = new ArrayList<>();
         while (cursor.moveToNext()) {
             /* get colum index pega o indice de acordo com o nome da coluna passado */
-            logins.add(getTask(cursor));
+            logins.add(getLogin(cursor));
 
         }
         return logins;
