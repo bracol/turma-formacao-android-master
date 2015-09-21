@@ -66,7 +66,10 @@ public class LabelFormActivity extends AppCompatActivity {
         Color [] list = Color.values();
         ColorListAdapter colorAdapter = new ColorListAdapter(LabelFormActivity.this, list);
         spinnerColor.setAdapter(colorAdapter);
+    }
 
+    private Color getSpinnerColor(){
+        return (Color) spinnerColor.getItemAtPosition(spinnerColor.getSelectedItemPosition());
     }
 
     private void updateLabelList() {
@@ -112,8 +115,8 @@ public class LabelFormActivity extends AppCompatActivity {
         //seta a label com o edittext.getText que irá pegar o texto do componente, porém é necessário dar um toString()
         label.setName(editTextName.getText().toString());
         label.setDescription(editTextDescription.getText().toString());
-        Color cor = (Color) spinnerColor.getAdapter().getItem(spinnerColor.getSelectedItemPosition());
-        label.setColor(cor);
+        //Color cor = (Color) spinnerColor.getAdapter().getItem(spinnerColor.getSelectedItemPosition());
+        label.setColor(getSpinnerColor());
 
     }
 }

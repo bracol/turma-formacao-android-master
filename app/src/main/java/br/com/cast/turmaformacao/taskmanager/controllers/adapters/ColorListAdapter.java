@@ -48,7 +48,6 @@ public class ColorListAdapter extends BaseAdapter {
         cor = android.graphics.Color.parseColor(color.getHex());
         TextView background = (TextView) colorListItem.findViewById(R.id.spinnerItemColor);
         background.setBackgroundColor(cor);
-        background.setText(color.toString());
         return colorListItem;
 
     }
