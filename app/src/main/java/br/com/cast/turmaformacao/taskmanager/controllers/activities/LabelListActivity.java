@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -46,9 +47,10 @@ public class LabelListActivity extends AppCompatActivity {
         listViewLabelList.setAdapter(new LabelListAdapter(this, values));
 
         LabelListAdapter adapter = (LabelListAdapter) listViewLabelList.getAdapter();
-
         adapter.notifyDataSetInvalidated();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

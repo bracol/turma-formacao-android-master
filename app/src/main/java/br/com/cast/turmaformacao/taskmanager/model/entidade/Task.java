@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by Administrador on 15/09/2015.
  */
-public class Task implements Parcelable{
+public class Task implements Parcelable {
     //os dados pode ser serializados, dados transmitos 1 a 1
     //parcelable forma mais rapida de serializar dados
 
@@ -21,11 +21,11 @@ public class Task implements Parcelable{
         return id;
     }
 
-    public Task(){
+    public Task() {
         super();
     }
 
-    public Task(Parcel imp){
+    public Task(Parcel imp) {
         super();
         readFromParcel(imp);
     }
@@ -86,13 +86,14 @@ public class Task implements Parcelable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", label = " + label.getId() ;
+                ", label = " + label.getId();
     }
 
     @Override
     public int describeContents() {
         return 0;
     }
+
     /* Escrita para o parcelable */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -102,7 +103,7 @@ public class Task implements Parcelable{
         dest.writeParcelable(label == null ? new Label() : label, flags);
     }
 
-    public void readFromParcel(Parcel imp){
+    public void readFromParcel(Parcel imp) {
         id = imp.readLong();
         id = id == -1 ? null : id;
 
@@ -111,7 +112,7 @@ public class Task implements Parcelable{
         label = imp.readParcelable(Label.class.getClassLoader());
     }
 
-    public static final  Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>(){
+    public static final Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>() {
 
         @Override
         public Task createFromParcel(Parcel source) {

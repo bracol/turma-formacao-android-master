@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="72dp">
+    android:layout_height="72dp"
+    android:orientation="horizontal">
 
-    <View
+    <ImageView
         android:id="@+id/viewColorList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:gravity="center"
-        android:background="@color/abc_input_method_navigation_guard"
-        ></View>
+        android:padding="20dp"
+        android:layout_margin="1dp"
+        android:src="@drawable/circle" />
 
     <TextView
         android:id="@+id/textViewNameList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="7"
-        android:gravity="center"
-        />
+        android:layout_margin="1dp"
+        android:gravity="start|center" />
 
 
 </LinearLayout>

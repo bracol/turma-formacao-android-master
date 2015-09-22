@@ -127,7 +127,6 @@ public class LabelFormActivity extends AppCompatActivity {
         binLabel();
         LabelBusinessServices.save(label);
         finish();
-        //if()
         //Toast serve para exibir uma mensagem na tela do android como uma popup
         //necessita de um contexto(activity), a mensagem e o tipo da duração que será exibido(long, short) e um .show() para de fato aparecer na tela
         //Toast.makeText(LabelFormActivity.this, label.toString(), Toast.LENGTH_LONG).show();

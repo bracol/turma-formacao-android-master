@@ -1,12 +1,15 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -55,7 +58,6 @@ public class TaskFormActivity extends AppCompatActivity {
                 startActivity(goToLabelForm);
             }
         });
-
     }
 
     @Override
@@ -68,7 +70,24 @@ public class TaskFormActivity extends AppCompatActivity {
         List<Label> labels = LabelBusinessServices.findAll();
         spinnerLabel = (Spinner) findViewById(R.id.spinnerLabel);
         spinnerLabel.setAdapter(new LabelListAdapter(TaskFormActivity.this, labels));
+        spinnerLabel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setSpinnerBackground();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setSpinnerBackground(){
+        int cor = android.graphics.Color.parseColor(((Label)spinnerLabel.getSelectedItem()).getColor().getHex());
+    }
+
 
     public void updateLabelList() {
         List<Label> labels = LabelBusinessServices.findAll();

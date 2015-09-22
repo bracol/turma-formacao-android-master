@@ -55,6 +55,8 @@ public class TaskListActivity extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     protected void onResume() {
         updateTaskList();

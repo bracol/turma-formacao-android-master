@@ -1,10 +1,14 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.adapters;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -45,16 +49,19 @@ public class LabelListAdapter extends BaseAdapter {
         return position;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Label label = getItem(position);
         //segundo passo criar o layout da lista
         //terceiro passo criar os itens da lista aqui
+        int cor = android.graphics.Color.parseColor(label.getColor().getHex());
 
         View viewListLabel = context.getLayoutInflater().inflate(R.layout.list_item_label, parent, false);
 
-        View viewColor = viewListLabel.findViewById(R.id.viewColorList);
-        viewColor.setBackgroundColor(android.graphics.Color.parseColor(label.getColor().getHex()));
+
+        ImageView imageViewColor = (ImageView) viewListLabel.findViewById(R.id.viewColorList);
+        imageViewColor.setImageTintList(ColorStateList.valueOf(cor));
 
         TextView textViewName = (TextView) viewListLabel.findViewById(R.id.textViewNameList);
         textViewName.setText(label.getName());
