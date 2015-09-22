@@ -7,14 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.R;
@@ -78,6 +75,11 @@ public class TaskFormActivity extends AppCompatActivity {
         LabelListAdapter adapter = (LabelListAdapter) spinnerLabel.getAdapter();
         adapter.setItens(labels);
         adapter.notifyDataSetChanged();
+        if(task.getLabel() != null) {
+            int posicaoLabel = labels.indexOf(task.getLabel());
+            spinnerLabel.setSelection(posicaoLabel);
+        }
+        //int ae = 1;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,7 +93,7 @@ public class TaskFormActivity extends AppCompatActivity {
     public void initTask() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            this.task = (Task) getIntent().getExtras().getParcelable(PARAM_TASK);
+            this.task = getIntent().getExtras().getParcelable(PARAM_TASK);
         }
         this.task = this.task == null ? new Task() : this.task;
     }

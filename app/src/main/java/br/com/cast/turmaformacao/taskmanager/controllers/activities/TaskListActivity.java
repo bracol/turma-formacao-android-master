@@ -64,10 +64,8 @@ public class TaskListActivity extends AppCompatActivity {
     private void updateTaskList() {
         List<Task> values = TaskBusinessServices.findAll();
         listViewTaskList.setAdapter(new TaskListAdapter(this, values));
-
         TaskListAdapter adapter = (TaskListAdapter) listViewTaskList.getAdapter();
-
-        adapter.notifyDataSetInvalidated();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

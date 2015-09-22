@@ -99,6 +99,7 @@ public class Task implements Parcelable{
         dest.writeLong(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
         dest.writeString(description == null ? "" : description);
+        dest.writeParcelable(label == null ? new Label() : label, flags);
     }
 
     public void readFromParcel(Parcel imp){
@@ -107,6 +108,7 @@ public class Task implements Parcelable{
 
         name = imp.readString();
         description = imp.readString();
+        label = imp.readParcelable(Label.class.getClassLoader());
     }
 
     public static final  Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>(){

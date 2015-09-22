@@ -7,14 +7,15 @@
         android:id="@+id/editTextFormLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Login"
+        android:hint="@string/lbl_login"
         />
 
     <EditText
         android:id="@+id/editTextFormPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/lbl_password"
+        android:password="true"
         />
 
 

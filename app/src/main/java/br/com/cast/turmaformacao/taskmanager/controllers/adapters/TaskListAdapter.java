@@ -1,9 +1,14 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.adapters;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.media.Image;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -40,14 +45,17 @@ public class TaskListAdapter extends BaseAdapter {
         return position;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Task task = getItem(position);
         View taskListItem = context.getLayoutInflater().inflate(R.layout.list_item_task, parent, false);
 
-        View viewLabelColor = taskListItem.findViewById(R.id.viewLabelColor);
+        ImageView imageViewLabelColor = (ImageView) taskListItem.findViewById(R.id.viewLabelColor);
         int cor = android.graphics.Color.parseColor(task.getLabel().getColor().getHex());
-        viewLabelColor.setBackgroundColor(cor);
+        imageViewLabelColor.setImageTintList(ColorStateList.valueOf(cor));
+
+
 
         TextView textViewName = (TextView) taskListItem.findViewById(R.id.textViewName);
         textViewName.setText((task.getName().toString()));
