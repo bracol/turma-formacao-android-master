@@ -60,4 +60,20 @@ public class LoginRepository {
 
         return values;
     }
+
+    public static Login getByLoginPassword(String $login, String $password) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = LoginContract.LOGIN + " = ? AND " + LoginContract.PASSWORD + " = ? ";
+        String[] params = {$login, $password};
+
+        Cursor cursor = db.query(LoginContract.TABLE, LoginContract.COLUMNS, where, params, null, null, null, null);
+        Login login = LoginContract.getLogin(cursor);
+
+        db.close();
+        databaseHelper.close();
+
+        return login;
+    }
 }
