@@ -20,7 +20,8 @@
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:layout_margin="1dp"
-        android:gravity="start|center" />
+        android:gravity="start|center"
+        />
 
 
 </LinearLayout>

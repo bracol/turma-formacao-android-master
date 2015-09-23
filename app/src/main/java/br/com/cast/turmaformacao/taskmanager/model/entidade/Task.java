@@ -16,6 +16,7 @@ public class Task implements Parcelable {
     private String name;
     private String description;
     private Label label;
+    private Login usuario;
 
     public Long getId() {
         return id;
@@ -36,6 +37,14 @@ public class Task implements Parcelable {
 
     public void setLabel(Label label) {
         this.label = label;
+    }
+
+    public Login getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Login usuario) {
+        this.usuario = usuario;
     }
 
     public void setId(long id) {
@@ -101,6 +110,7 @@ public class Task implements Parcelable {
         dest.writeString(name == null ? "" : name);
         dest.writeString(description == null ? "" : description);
         dest.writeParcelable(label == null ? new Label() : label, flags);
+        dest.writeParcelable(usuario == null ? new Login() : usuario, flags);
     }
 
     public void readFromParcel(Parcel imp) {
@@ -110,6 +120,7 @@ public class Task implements Parcelable {
         name = imp.readString();
         description = imp.readString();
         label = imp.readParcelable(Label.class.getClassLoader());
+        usuario = imp.readParcelable(Login.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>() {

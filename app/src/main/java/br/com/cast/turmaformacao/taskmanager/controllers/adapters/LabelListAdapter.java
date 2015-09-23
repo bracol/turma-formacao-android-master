@@ -59,7 +59,6 @@ public class LabelListAdapter extends BaseAdapter {
 
         View viewListLabel = context.getLayoutInflater().inflate(R.layout.list_item_label, parent, false);
 
-
         ImageView imageViewColor = (ImageView) viewListLabel.findViewById(R.id.viewColorList);
         imageViewColor.setImageTintList(ColorStateList.valueOf(cor));
 

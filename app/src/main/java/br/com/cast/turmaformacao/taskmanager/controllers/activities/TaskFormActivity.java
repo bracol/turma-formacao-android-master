@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class TaskFormActivity extends AppCompatActivity {
     private Button btnLabel;
     private EditText editTextDescription;
     private Spinner spinnerLabel;
+    private FrameLayout frameLayout;
     private Task task;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,11 @@ public class TaskFormActivity extends AppCompatActivity {
         bindEditTextDescription();
         bindBtnLabel();
         bindSpinnerLabel();
+        bindFrameLayout();
+    }
+
+    private void bindFrameLayout() {
+        frameLayout = (FrameLayout) findViewById(R.id.frameLayoutFormTask);
     }
 
     private void bindBtnLabel() {
@@ -70,10 +77,11 @@ public class TaskFormActivity extends AppCompatActivity {
         List<Label> labels = LabelBusinessServices.findAll();
         spinnerLabel = (Spinner) findViewById(R.id.spinnerLabel);
         spinnerLabel.setAdapter(new LabelListAdapter(TaskFormActivity.this, labels));
-        spinnerLabel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+        spinnerLabel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setSpinnerBackground();
+                frameLayout.setBackgroundColor(android.graphics.Color.parseColor(((Label) spinnerLabel.getSelectedItem()).getColor().getHex()));
+                int cor = android.graphics.Color.parseColor("#FFFFFF");
+                spinnerLabel.setBackgroundColor(cor);
             }
 
             @Override
@@ -81,13 +89,8 @@ public class TaskFormActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setSpinnerBackground(){
-        int cor = android.graphics.Color.parseColor(((Label)spinnerLabel.getSelectedItem()).getColor().getHex());
     }
-
 
     public void updateLabelList() {
         List<Label> labels = LabelBusinessServices.findAll();

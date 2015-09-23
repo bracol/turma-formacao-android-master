@@ -76,4 +76,20 @@ public class LoginRepository {
 
         return login;
     }
+
+    public static Login getById(long id){
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = LoginContract.ID + " = ? ";
+        String[] params = {String.valueOf(id)};
+
+        Cursor cursor = db.query(LoginContract.TABLE, LoginContract.COLUMNS, where, params, null, null, null, null);
+        Login login = LoginContract.getLogin(cursor);
+
+        db.close();
+        databaseHelper.close();
+        return login;
+    }
 }

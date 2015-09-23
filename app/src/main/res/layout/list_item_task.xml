@@ -12,7 +12,8 @@
             android:layout_weight="2"
             android:src="@drawable/circle"
             android:padding="30dp"
-            android:gravity="center" />
+            android:gravity="center"
+            />
 
 
     <TextView

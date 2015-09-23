@@ -1,9 +1,12 @@
 package br.com.cast.turmaformacao.taskmanager.model.entidade;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Administrador on 21/09/2015.
  */
-public class Login {
+public class Login implements Parcelable {
     private Long id;
     private String login;
     private String password;
@@ -32,6 +35,8 @@ public class Login {
         this.password = password;
     }
 
+
+
     @Override
     public String toString() {
         return "Login{" +
@@ -40,4 +45,35 @@ public class Login {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.login);
+        dest.writeString(this.password);
+    }
+
+    public Login() {
+    }
+
+    protected Login(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.login = in.readString();
+        this.password = in.readString();
+    }
+
+    public static final Parcelable.Creator<Login> CREATOR = new Parcelable.Creator<Login>() {
+        public Login createFromParcel(Parcel source) {
+            return new Login(source);
+        }
+
+        public Login[] newArray(int size) {
+            return new Login[size];
+        }
+    };
 }

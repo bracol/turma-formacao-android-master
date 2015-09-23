@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Login;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
 
 /**
@@ -19,8 +20,9 @@ public final class TaskContract {
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String LABEL_ID = "label_id";
+    public static final String LOGIN_ID = "usuario_id";
 
-    public static final String[] COLUMNS = {ID, NAME, DESCRIPTION, LABEL_ID};
+    public static final String[] COLUMNS = {ID, NAME, DESCRIPTION, LABEL_ID, LOGIN_ID};
 
     private TaskContract() {
         super();
@@ -34,7 +36,8 @@ public final class TaskContract {
         create.append(ID + " INTEGER PRIMARY KEY, ");
         create.append(NAME + " TEXT NOT NULL, ");
         create.append(DESCRIPTION + " TEXT, ");
-        create.append(LABEL_ID + " INTEGER NOT NULL ");
+        create.append(LABEL_ID + " INTEGER NOT NULL, ");
+        create.append(LOGIN_ID + " INTEGER ");
         create.append(" ); ");
 
         return create.toString();
@@ -46,6 +49,7 @@ public final class TaskContract {
         values.put(TaskContract.NAME, task.getName());
         values.put(TaskContract.DESCRIPTION, task.getDescription());
         values.put(TaskContract.LABEL_ID, task.getLabel().getId());
+        values.put(TaskContract.LOGIN_ID, task.getUsuario().getId());
 
         return values;
     }
@@ -60,8 +64,11 @@ public final class TaskContract {
 
             Label label = new Label();
             label.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID)));
-
             task.setLabel(label);
+
+            Login usuario = new Login();
+            usuario.setId(cursor.getLong(cursor.getColumnIndex((TaskContract.LOGIN_ID))));
+            task.setUsuario(usuario);
             return task;
         }
         return null;
