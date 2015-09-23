@@ -1,15 +1,28 @@
 package br.com.cast.turmaformacao.taskmanager.model.entidade;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by Administrador on 23/09/2015.
  */
 public class Address {
 
+    @JsonProperty("cep")
     private String zipCode;
+
+    @JsonProperty("tipoDeLogradouro")
     private String type;
+
+    @JsonProperty("logradouro")
     private String street;
+
+    @JsonProperty("bairro")
     private String neighborhood;
+
+    @JsonProperty("cidade")
     private String city;
+
+    @JsonProperty("estado")
     private String state;
 
     public Address() {

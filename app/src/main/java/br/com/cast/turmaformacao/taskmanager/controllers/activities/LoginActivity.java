@@ -1,6 +1,7 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,7 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.cast.turmaformacao.taskmanager.R;
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Address;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Login;
+import br.com.cast.turmaformacao.taskmanager.model.http.AddresService;
 import br.com.cast.turmaformacao.taskmanager.model.persistence.Login.LoginRepository;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,6 +31,27 @@ public class LoginActivity extends AppCompatActivity {
         bindEditTextLogin();
         bindEditTextPassword();
         bindButtonLogin();
+
+        new GetAddressTask().execute("13575050");
+    }
+
+    //primeiro parametro o que vou passar, void corresponde ao processo(não implementado) e vai retornar um adress
+    private class GetAddressTask extends AsyncTask<String, Void, Address>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Address doInBackground(String... params) {
+            return AddresService.getAdressByZipCode(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Address address) {
+            super.onPostExecute(address);
+        }
     }
 
     private void bindButtonLogin() {
