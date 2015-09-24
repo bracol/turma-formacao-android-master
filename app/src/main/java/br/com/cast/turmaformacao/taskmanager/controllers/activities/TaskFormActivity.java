@@ -138,6 +138,10 @@ public class TaskFormActivity extends AppCompatActivity {
             //contexto de aplicao, não estão manipulando interface e sim arquivo
             TaskBusinessServices.save(task);
             //Toast.makeText(TaskFormActivity.this, R.string.msg_save_sucess, Toast.LENGTH_LONG).show();
+            //List<Task> listTask = TaskBusinessServices.findAll();
+            //for(Task t : listTask){
+               // Toast.makeText(TaskFormActivity.this, t.toString(), Toast.LENGTH_LONG);
+           // }
 
             TaskFormActivity.this.finish();
         }
@@ -147,7 +151,8 @@ public class TaskFormActivity extends AppCompatActivity {
         task.setName(editTextName.getText().toString());
         task.setDescription(editTextDescription.getText().toString());
         task.setLabel((Label) spinnerLabel.getSelectedItem());
-        Toast.makeText(TaskFormActivity.this, task.toString(), Toast.LENGTH_LONG).show();
+        //task.setWeb_id((long)111);
+        //Toast.makeText(TaskFormActivity.this, task.toString(), Toast.LENGTH_LONG).show();
     }
 
     private void bindEditTextDescription() {

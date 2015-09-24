@@ -25,6 +25,13 @@
     <string name="lbl_no"> Não </string>
     <string name="lbl_OK" />
     <string name="lbl_btnSaveLabel">Cadastrar Label</string>
+    <string name="lbl_zipCode">Cep</string>
+    <string name="lbl_type">Tipo de Logradouro</string>
+    <string name="lbl_btnCep">Gerar</string>
+    <string name="lbl_rua">Rua</string>
+    <string name="lbl_bairro">Bairro</string>
+    <string name="lbl_cidade">Cidade</string>
+    <string name="lbl_estado">Estado</string>
 
     <string name="msg_imc">Seu IMC: %f</string>
     <string name="msg_required">Campo obrigatorio</string>

@@ -9,5 +9,12 @@
         android:icon="@mipmap/ic_action__add"
         />
 
+    <item
+        android:id="@+id/menuTask_atualizar"
+        android:title="@string/lbl_add"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_att"
+        />
+
 
 </menu>

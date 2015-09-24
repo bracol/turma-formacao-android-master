@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.R;
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
 
 /**
@@ -52,14 +53,19 @@ public class TaskListAdapter extends BaseAdapter {
         View taskListItem = context.getLayoutInflater().inflate(R.layout.list_item_task, parent, false);
 
         ImageView imageViewLabelColor = (ImageView) taskListItem.findViewById(R.id.viewLabelColor);
-        int cor = android.graphics.Color.parseColor(task.getLabel().getColor().getHex());
-        imageViewLabelColor.setImageTintList(ColorStateList.valueOf(cor));
-
-
+        if (task.getLabel() != null){
+            int cor = android.graphics.Color.parseColor(task.getLabel().getColor().getHex());
+            imageViewLabelColor.setImageTintList(ColorStateList.valueOf(cor));
+         }
 
         TextView textViewName = (TextView) taskListItem.findViewById(R.id.textViewName);
         textViewName.setText((task.getName().toString()));
 
         return taskListItem;
+    }
+
+    public void setItens(List<Task> itens) {
+        taskList.clear();
+        taskList.addAll(itens);
     }
 }

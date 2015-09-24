@@ -18,5 +18,84 @@
         android:password="true"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/editTextLoginFormZipCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/lbl_zipCode"
+            android:layout_weight="7"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="@string/lbl_btnCep"
+            />
+
+    </LinearLayout>
+
+
+
+    private String zipCode;
+    private String type;
+    private String street;
+    private String neighborhood;
+    private String city;
+    private String state;
+
+    <EditText
+        android:id="@+id/editTextLoginFormTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lbl_type"
+        />
+
+    <EditText
+        android:id="@+id/editTextLoginFormRua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lbl_rua"
+        />
+
+    <EditText
+        android:id="@+id/editTextLoginFormBairro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lbl_bairro"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editTextLoginFormCidade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:hint="@string/lbl_cidade"
+            />
+
+        <View
+            android:id="@+id/editViewLoginFormEstado"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="2"
+            android:hint="@string/lbl_estado"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
 
 </LinearLayout>

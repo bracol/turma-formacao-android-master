@@ -61,5 +61,18 @@ public class TaskRepository {
         return values;
     }
 
+    public static Long getIdByWebId(Long webId){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = TaskContract.WEB_ID + " = ?";
+        String[] params = {String.valueOf(webId)};
+        String[] colums = {TaskContract.ID};
+        Cursor cursor = db.query(TaskContract.TABLE, colums, where, params, null, null, null);
+        Task task = TaskContract.getTask(cursor);
+
+        return task.getId();
+    }
+
 
 }

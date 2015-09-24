@@ -14,7 +14,9 @@ import android.widget.Toast;
 import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Address;
 import br.com.cast.turmaformacao.taskmanager.model.entidade.Login;
+import br.com.cast.turmaformacao.taskmanager.model.entidade.Task;
 import br.com.cast.turmaformacao.taskmanager.model.http.AddresService;
+import br.com.cast.turmaformacao.taskmanager.model.http.TaskService;
 import br.com.cast.turmaformacao.taskmanager.model.persistence.Login.LoginRepository;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,7 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         bindEditTextPassword();
         bindButtonLogin();
 
-        new GetAddressTask().execute("13575050");
+        //new GetAddressTask().execute("13575050");
+
     }
 
     //primeiro parametro o que vou passar, void corresponde ao processo(não implementado) e vai retornar um adress
@@ -53,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(address);
         }
     }
+
+
 
     private void bindButtonLogin() {
         buttonLogin = (Button) findViewById(R.id.buttonLogin);

@@ -29,4 +29,11 @@
     <string name="lbl_no"> No </string>
     <string name="lbl_OK" />
     <string name="lbl_btnSaveLabel">Save Label</string>
+    <string name="lbl_zipCode">zipCode</string>
+    <string name="lbl_type">Tipo de Logradouro</string>
+    <string name="lbl_btnCep">lbl_btnCep</string>
+    <string name="lbl_rua">lbl_rua</string>
+    <string name="lbl_bairro">lbl_bairro</string>
+    <string name="lbl_cidade">lbl_cidade</string>
+    <string name="lbl_estado">lbl_estado</string>
 </resources>
