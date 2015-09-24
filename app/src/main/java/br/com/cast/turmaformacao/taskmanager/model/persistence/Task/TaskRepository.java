@@ -71,7 +71,10 @@ public class TaskRepository {
         Cursor cursor = db.query(TaskContract.TABLE, colums, where, params, null, null, null);
         Task task = TaskContract.getTask(cursor);
 
-        return task.getId();
+        if (task.getId() > 0)
+            return task.getId();
+        else
+            return (long)0;
     }
 
 

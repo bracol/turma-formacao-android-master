@@ -28,7 +28,7 @@ public final class TaskBusinessServices {
     }
 
     public static void save(Task task) {
-        if(task.getId() == TaskRepository.getIdByWebId(task.getWeb_id()) && task.getWeb_id() != null)
+        if(TaskRepository.getIdByWebId(task.getWeb_id()) > 0)
             task.setId(TaskRepository.getIdByWebId(task.getWeb_id()));
 
         TaskRepository.save(task);
