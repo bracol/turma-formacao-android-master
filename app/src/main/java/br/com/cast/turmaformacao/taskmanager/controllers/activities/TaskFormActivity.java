@@ -33,6 +33,7 @@ public class TaskFormActivity extends AppCompatActivity {
 
     public static final String PARAM_TASK = "TASK";
     private EditText editTextName;
+    private EditText editTextWeb;
     private Button btnLabel;
     private EditText editTextDescription;
     private Spinner spinnerLabel;
@@ -47,9 +48,11 @@ public class TaskFormActivity extends AppCompatActivity {
 
         bindEditTextName();
         bindEditTextDescription();
+
         bindBtnLabel();
         bindSpinnerLabel();
         bindFrameLayout();
+        bindEditTextWeb();
     }
 
     private void bindFrameLayout() {
@@ -77,7 +80,8 @@ public class TaskFormActivity extends AppCompatActivity {
         List<Label> labels = LabelBusinessServices.findAll();
         spinnerLabel = (Spinner) findViewById(R.id.spinnerLabel);
         spinnerLabel.setAdapter(new LabelListAdapter(TaskFormActivity.this, labels));
-        spinnerLabel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {            @Override
+        spinnerLabel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 frameLayout.setBackgroundColor(android.graphics.Color.parseColor(((Label) spinnerLabel.getSelectedItem()).getColor().getHex()));
                 int cor = android.graphics.Color.parseColor("#FFFFFF");
@@ -151,6 +155,7 @@ public class TaskFormActivity extends AppCompatActivity {
         task.setName(editTextName.getText().toString());
         task.setDescription(editTextDescription.getText().toString());
         task.setLabel((Label) spinnerLabel.getSelectedItem());
+        task.setWeb_id(Long.parseLong(editTextWeb.getText().toString()));
         //task.setWeb_id((long)111);
         //Toast.makeText(TaskFormActivity.this, task.toString(), Toast.LENGTH_LONG).show();
     }
@@ -163,6 +168,10 @@ public class TaskFormActivity extends AppCompatActivity {
     private void bindEditTextName() {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextName.setText(task.getName() == null ? "" : task.getName());
+    }
+
+    private void bindEditTextWeb() {
+        editTextWeb = (EditText) findViewById(R.id.editTextWebId);
     }
 
 }

@@ -68,13 +68,14 @@ public class TaskRepository {
         String where = TaskContract.WEB_ID + " = ?";
         String[] params = {String.valueOf(webId)};
         String[] colums = {TaskContract.ID};
-        Cursor cursor = db.query(TaskContract.TABLE, colums, where, params, null, null, null);
-        Task task = TaskContract.getTask(cursor);
+        Cursor cursor = db.query(TaskContract.TABLE, TaskContract.COLUMNS, where, params, null, null, null);
 
-        if (task.getId() > 0)
+        if (cursor.getCount() > 0){
+            Task task = TaskContract.getTask(cursor);
             return task.getId();
-        else
-            return (long)0;
+        }
+         return (long) 0;
+
     }
 
 
